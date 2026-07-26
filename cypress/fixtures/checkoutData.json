@@ -1,0 +1,34 @@
+{
+    "validData": {
+    "firstName": "standard",
+    "lastName": "user",
+    "zip": "0159"
+},
+"invalidData": [
+    {
+    "testName": "ცარიელი სახელი",
+    "firstName": "",
+    "lastName": "user",
+    "zip": "0159"
+
+},
+{
+    "testName": "ცარიელი გვარი",
+    "firstName": "standard",
+    "lastName": "",
+    "zip": "0159"
+},
+{
+    "testName": "ცარიელი საფოსტო კოდი",
+    "firstName": "standard",
+    "lastName": "user",
+    "zip": "" 
+},
+{
+    "testName": "ცარიელი სახელი და საფოსტო კოდი",
+    "firstName": "",
+    "lastName": "user",
+    "zip": ""
+}
+]
+}

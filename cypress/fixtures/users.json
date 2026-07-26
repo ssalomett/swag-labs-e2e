@@ -1,0 +1,33 @@
+[
+    {
+        "testname": "წარმატებული ლოგინი",
+        "username": "standard_user",
+        "password": "secret_sauce",
+        "expectedMessage": "/inventory.html"
+        
+    },
+    {
+        "testname": "დაბლოკილი მომხმარებელი",
+        "username": "locked_out_user",
+        "password": "secret_sauce",
+        "expectedMessage": "locked out"
+    },
+    {
+        "testname": "არასწორი პაროლი",
+        "username": "standard_user",
+        "password": "ubralodarasworiparoli",
+        "expectedMessage": "do not match"
+    },
+    {
+        "testname": "ცარიელი username",
+        "username": "",
+        "password": "secret_sauce",
+        "expectedMessage": "Username is required"
+    },
+    {
+        "testname": "ცარიელი პაროლი",
+        "username": "standard_user",
+        "password": "",
+        "expectedMessage": "Password is required"
+    }
+]
