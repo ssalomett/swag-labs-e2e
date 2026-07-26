@@ -29,5 +29,11 @@
         "username": "standard_user",
         "password": "",
         "expectedMessage": "Password is required"
+    },
+    {
+        "testname": "forproblemuser",
+        "username": "problem_user",
+        "password": "secret_sauce",
+        "expectedMessage": "/inventory.html"
     }
 ]
