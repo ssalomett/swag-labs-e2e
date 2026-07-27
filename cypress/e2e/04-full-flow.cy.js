@@ -28,6 +28,10 @@ describe('სრული ციკლი ერთ ტესტში', () => {
     cy.get('#finish').click()
     cy.get('.complete-header').should('contain', 'Thank you for your order!')
 
+       //logout ბრძანება
+       cy.get('#react-burger-menu-btn').click()
+       cy.get('#logout_sidebar_link').click()
+       cy.get('#user-name').should('be.visible')
 
     })
 })

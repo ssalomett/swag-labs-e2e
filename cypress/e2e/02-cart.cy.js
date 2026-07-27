@@ -2,23 +2,38 @@ describe('კალათის ტესტები', () => {
 
   // ყოველი ტესტის წინ ავტომატურად გაივლის ავტორიზაციას
   beforeEach(() => {
-    cy.login()
+    cy.login('standard_user', 'secret_sauce')
   })
 
-  // 1. პროდუქტის დამატებისას ბეჯზე ჩნდება "1"
+  // 1. პროდუქტების სორტირება ფასის მიხედვით
+  it('Price (low to high) სორტირების შემდეგ პირველი ფასი ≤ ბოლო ფასზე', () => {
+    // სორტირება
+    cy.get('[data-test="product-sort-container"]').select('lohi')
+
+    // პირველი და ბოლო ფასის შედარება
+    cy.get('.inventory_item_price').then(($prices) => {
+      const firstPrice = parseFloat($prices.first().text().replace('$', ''))
+      const lastPrice = parseFloat($prices.last().text().replace('$', ''))
+
+      // შემოწმება
+      expect(firstPrice).to.be.lte(lastPrice)
+    })
+  })
+
+  // 2. პროდუქტის დამატებისას ბეჯზე ჩნდება "1"
   it('პროდუქტის დამატებისას ბეჯზე ჩნდება 1', () => {
     cy.addToCart('sauce-labs-backpack')
     cy.get('.shopping_cart_badge').should('have.text', '1')
   })
 
-  // 2. პროდუქტის დამატებისას ბეჯზე წერია "2"
+  // 3. 2 პროდუქტის დამატებისას ბეჯზე წერია "2"
   it('2 პროდუქტის დამატებისას ბეჯზე წერია 2', () => {
     cy.addToCart('sauce-labs-backpack')
     cy.addToCart('sauce-labs-bike-light')
     cy.get('.shopping_cart_badge').should('have.text', '2')
   })
 
-  // 3. Remove ღილაკი პროდუქტს შლის (ბეჯი ქრება)
+  // 4. Remove ღილაკი პროდუქტს შლის (ბეჯი ქრება)
   it('Remove ღილაკით პროდუქტის წაშლისას ბეჯი ქრება', () => {
     cy.addToCart('sauce-labs-backpack')
     cy.get('.shopping_cart_badge').should('have.text', '1')
@@ -28,7 +43,7 @@ describe('კალათის ტესტები', () => {
     cy.get('.shopping_cart_badge').should('not.exist')
   })
 
-  // 4. კალათის გვერდზე ჩანს დამატებული პროდუქტის სახელი
+  // 5. კალათის გვერდზე ჩანს დამატებული პროდუქტის სახელი
   it('კალათის გვერდზე ჩანს დამატებული პროდუქტის სახელი', () => {
     cy.addToCart('sauce-labs-backpack')
     cy.get('.shopping_cart_link').click() // კალათაში შესვლა
