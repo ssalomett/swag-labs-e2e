@@ -51,3 +51,33 @@ describe('კალათის ტესტები', () => {
   })
 
 })
+
+describe('Bug Hunt', () => {
+
+  // ავტორიზაცია problem_user-ით
+  beforeEach(() => {
+    cy.login('problem_user', 'secret_sauce')
+  })
+
+  // 1. პროდუქტების სორტირება ფასის მიხედვით
+  it('Price (low to high) სორტირება მუშაობს problem_user-ით', () => {
+
+    // lohi-ზე დაჭერა
+    cy.get('[data-test="product-sort-container"]').select('lohi')
+
+    // ფასების შემოწმება
+    cy.get('.inventory_item_price').then(($prices) => {
+
+      const prices = [...$prices].map((price) =>
+        parseFloat(price.innerText.replace('$', ''))
+      )
+
+      const sortedPrices = [...prices].sort((a, b) => a - b)
+
+      expect(prices).to.deep.equal(sortedPrices)
+
+    })
+
+  })
+
+})
