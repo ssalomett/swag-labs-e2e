@@ -12,6 +12,7 @@
 პროექტის საწყის ეტაპზე შევქმენი ბრძანებები Login, Cart და Checkout ტესტ-ფაილებისთვის:
 * `cy.login(username, password)` — ავტორიზაციის პროცესის ავტომატიზაცია.
 * `cy.addToCart(productName)` — პროდუქტის კალათაში დამატება.
+* `cy.fillCheckout(firstName, lastName, zip) - ავსებს checkout ფორმას და აჭერს Continue-ს
 
 ### 2. Fixtures (`cypress/fixtures/`)
 პროექტის ამ ეტაპზე შევქმენი სცენარები სატესტო მონაცემებისთვის:
